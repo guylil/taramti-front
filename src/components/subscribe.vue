@@ -1,7 +1,7 @@
 <template lang="html">
 
   <section class="subscribe">
-    <h1>subscribe Component</h1>
+    <h3>subscribe Component</h3>
   </section>
 
 </template>

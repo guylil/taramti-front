@@ -33,7 +33,9 @@
           </v-container>
         </v-card-text>
     </v-card>
-    <v-btn primary @click="save">signin</v-btn>
+    <!--<p>{{res}}</p>-->
+    <v-avatar img="this.res"></v-avatar>
+    <v-btn primary @click.native="save">signin</v-btn>
 </div>
 
 
@@ -53,7 +55,8 @@
         forgotMsg: 'I Forgot :-(',
         signUpMsg: 'Sign up',
         userName: '',
-        password: ''
+        password: '',
+        res:'',
       }
     },
     methods: {
@@ -61,16 +64,33 @@
         this.userName = localStorage.getItem('userName')
       },
       save() {
+        console.log('hello')
         localStorage.setItem('userName', this.userName)
-        //POST
+       
+        //   // POST /someUrl
+        //   this.$http.post('/someUrl', {foo: 'bar'}).then(response => {
+        //     // get status
+        //     response.status;
+        //     // get status text
+        //     response.statusText;
+        //     // get 'Expires' header
+        //     response.headers.get('Expires');
+        //     // get body data
+        //     this.someData = response.body;
+        //   }, response => {
+        //     // error callback
+        //   });
+        // }
         // this.$http.post('/someUrl', [body], [options]).then(successCallback, errorCallback);
         // get
-        this.$http.get('/someUrl').then(response => {
+         this.$http.get('https://api.github.com/users/guylil').then(response => {
           // get body data
-          this.someData = response.body;
+          this.res = response.body;
         }, response => {
           // error callback
         });
+        console.log(this.res)
+        this.res = this.res.avatar_url+'.jpg'
         console.log(this.userName)
       }
     },
