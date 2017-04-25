@@ -1,53 +1,58 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1>{{ loginMsg }}</h1>
+    <div class="flex-container">
+      <div class="flex-item">hi</div>
+      <div class="flex-item">hello</div>
+      <div class="flex-item">welcome</div>
+    </div>
+    <input type="text" placeholder="User name" v-model="userName">
+    <input type="password" placeholder="password" v-model="password">
+    <button @click="save">signin</button>
+    <h2>{{ forgotMsg }}</h2>
+    <h2>{{ signUpMsg }}</h2>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  export default {
+    name: 'hello',
+    mounted() {
+      this.userName = localStorage.getItem('userName')
+  },
+    data() {
+      return {
+        loginMsg: 'Please Login',
+        forgotMsg: 'I Forgot :-(',
+        signUpMsg: 'Sign up',
+        userName: '',
+        password: ''
+      }
+    },
+    methods: {
+      load() {
+        this.userName = localStorage.getItem('userName')
+      },
+      save() {
+        localStorage.setItem('userName', this.userName)
+        // this.userName = this.userName; 
+        console.log(this.userName)
+      }
     }
   }
-}
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+<!-- Add "scoped" attriclass="flex-item"bute to limit CSS to this component only -->
+<style scoped lang="scss">
+  h2 {
+    background-color: lightcyan;
+  }
+  .flex-container{
+    display: flex;
+  }
+  .flex-item{
+    padding: 0.5em;
+    flex-direction: row-reverse;
+  }
 </style>
