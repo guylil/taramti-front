@@ -1,4 +1,4 @@
-# taramti
+# Taramti-Babayt - Educational Project
 
 > A Vue.js project
 
